@@ -14,3 +14,19 @@ def get_char_counts(content):
       counts[char] = 1
 
   return counts
+
+# return array of sorted dicts of chars and counts
+def sort_char_counts(counts_dict):
+  counts_array = []
+
+  for key in counts_dict:
+    counts_array.append({
+      "char": key,
+      "num": counts_dict[key]
+    })
+
+  counts_array.sort(reverse=True, key=sort_by_num)
+  return counts_array
+
+def sort_by_num(dict):
+  return dict["num"]
