@@ -1,6 +1,7 @@
 from stats import get_word_count
 from stats import get_char_counts
 from stats import sort_char_counts
+import sys
 
 # returns content of file as str
 def get_book_text(file_path):
@@ -30,6 +31,10 @@ def gen_book_report(file_path):
   return report_txt
 
 def main():
-  print(gen_book_report("books/frankenstein.txt"))
+  if len(sys.argv) < 2:
+    print("Usage: python3 main.py <path_to_book>")
+    sys.exit(1)
+
+  print(gen_book_report(sys.argv[1]))
 
 main()
