@@ -7,13 +7,29 @@ def get_book_text(file_path):
   with open(file_path) as file:
     return file.read()
 
-def main():
-  book_contents = get_book_text("books/frankenstein.txt")
+# gen report str
+def gen_book_report(file_path):
+  report_txt = "============ BOOKBOT ============\n"
+  report_txt += f"Analyzing book found at {file_path}...\n"
+  
+  book_contents = get_book_text(file_path)
 
   word_count = get_word_count(book_contents)
-  print(f"{word_count} words found in the document")
+  report_txt += "----------- Word Count ----------\n"
+  report_txt += f"Found {word_count} total words\n"
 
   char_counts = sort_char_counts(get_char_counts(book_contents))
-  print(char_counts)
+  report_txt += "--------- Character Count -------\n"
+  
+  for char_dict in char_counts:
+    if char_dict["char"].isalpha():
+      report_txt += f"{char_dict["char"]}: {char_dict["num"]}\n"
+
+  report_txt += "============= END ==============="
+
+  return report_txt
+
+def main():
+  print(gen_book_report("books/frankenstein.txt"))
 
 main()
