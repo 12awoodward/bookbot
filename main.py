@@ -42,10 +42,14 @@ def gen_book_report(file_path):
   return report_txt
 
 def main():
-  if len(sys.argv) < 2:
+  arg = sys.argv.pop()
+
+  if arg == "main.py":
     print("Usage: python3 main.py <path_to_book>")
     sys.exit(1)
 
-  print(gen_book_report(sys.argv[1]))
+  while arg != "main.py":
+    print(gen_book_report(arg))
+    arg = sys.argv.pop()
 
 main()
