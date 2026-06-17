@@ -1,6 +1,3 @@
-from typing import TypedDict
-
-
 # return number of words in str
 def get_word_count(content: str):
     return len(content.split())
@@ -20,21 +17,16 @@ def get_char_counts(content: str):
     return counts
 
 
-class CharCount(TypedDict):
-    char: str
-    num: int
-
-
-def sort_by_num(dict: CharCount):
-    return dict["num"]
+def sort_by_num(item: tuple[str, int]):
+    return item[1]
 
 
 # return array of sorted dicts of chars and counts
 def sort_char_counts(counts_dict: dict[str, int]):
-    counts_array: list[CharCount] = []
+    counts_array: list[tuple[str, int]] = []
 
     for key in counts_dict:
-        counts_array.append({"char": key, "num": counts_dict[key]})
+        counts_array.append((key, counts_dict[key]))
 
     counts_array.sort(reverse=True, key=sort_by_num)
     return counts_array

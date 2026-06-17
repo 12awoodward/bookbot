@@ -32,14 +32,20 @@ def gen_book_report(file_path: str):
     char_counts = sort_char_counts(get_char_counts(book_contents))
     rpt.add_line_fill("Character Count")
 
-    for char_dict in char_counts:
-        if char_dict["char"].isalpha():
-            rpt.add_line(f" '{char_dict["char"]}': {char_dict["num"]}")
+    for char_item in char_counts:
+        if char_item[0].isalpha():
+            rpt.add_line(f" '{char_item[0]}': {char_item[1]}")
 
     return rpt.get_text()
 
 
 def main():
+    
+    # for testing
+    # book_path = "books/frankenstein.txt"
+    # print(gen_book_report(book_path))
+    # return
+
     arg = sys.argv.pop()
 
     if arg == "main.py":
